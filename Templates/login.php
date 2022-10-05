@@ -10,15 +10,17 @@
                 $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
                 
                 /* Check Username and Password existence in defined array */            
-                if (isset($logins[$Username]) && $logins[$Username] == $Password){
-                        /* Success: Set session variables and redirect to Protected page  */
-                        $_SESSION['UserData']['Username']=$logins[$Username];
-                        header("location:index.php");
-                        exit;
-                } else {
-                        /*Unsuccessful attempt: Set error message */
-                        $msg="<span style='color:red'>Invalid Login Details</span>";
+                if (isset($users[$_POST["Username"]])) {
+                    if ($users[$_POST["Username"]] == $_POST["Password"]) {
+                      $_SESSION["Username"] = $_POST["Username"];
+                    }
                 }
+                if (!isset($_SESSION["Username"])) { $failed = true; }
+
+                if (isset($_SESSION["Username"])) {
+                    header("Location: index.php"); // SET YOUR OWN HOME PAGE!
+                    exit();
+                  }
         }
 ?>
 <html>
