@@ -11,15 +11,15 @@
   <body>
   <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-  <?php
-session_start();
+<?php
+  session_start();
  
-if(!isset($_SESSION['user_id'])){
-    header('Location: login.php');
-    exit;
-} else {
+  if(!isset($_SESSION['user_id'])){
+      header('Location: login.php');
+      exit;
+  } else {
     // Show users the page!
-}
+  }
 ?>
     <a class="navbar-brand fw-bold" href="#">Ikasleak - Joseba</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
