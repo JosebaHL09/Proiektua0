@@ -29,6 +29,7 @@
 
 .login-text {
   background-color: #f6f6f6;
+  width: 30rem;
   max-width: 400px;
   min-height: 500px;
   border-radius: 10px;
@@ -42,6 +43,11 @@
 .logo span i {
   font-size: 25px;
   color: #0d8aa7;
+}
+
+.logo img{
+  display:block;
+  margin:auto;
 }
 
 .login-text h1 {
@@ -98,11 +104,15 @@ input {
   color: #ffffff;
   border-radius: 30px;
   padding: 10px 15px;
-  background: linear-gradient(122.33deg, #68bed1 30.62%, #1e94e9 100%);
-  margin-top: 30px;
+  background: linear-gradient(122.33deg, #863596 30.62%, #4d015c 100%);
+  margin: auto;
+  margin-top: 1rem;
   margin-bottom: 10px;
+  justify-content: center;
   font-size: 16px;
   transition: all 0.3s linear;
+  width: 15rem;
+  
 }
 
 .btn:hover {
@@ -113,5 +123,6 @@ input {
   font-weight: 600;
 }
 .extra-line a {
-  color: #0095b6;
+  color: #4d015c;
 }
+

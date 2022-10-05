@@ -1,3 +1,26 @@
+<?php session_start(); /* Starts the session */
+        
+        /* Check Login form submitted */        
+        if(isset($_POST['Submit'])){
+                /* Define username and associated password array */
+                $logins = array('admin' => '123','username1' => 'password1','username2' => 'password2');
+                
+                /* Check and assign submitted Username and Password to new variable */
+                $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
+                $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
+                
+                /* Check Username and Password existence in defined array */            
+                if (isset($logins[$Username]) && $logins[$Username] == $Password){
+                        /* Success: Set session variables and redirect to Protected page  */
+                        $_SESSION['UserData']['Username']=$logins[$Username];
+                        header("location:index.php");
+                        exit;
+                } else {
+                        /*Unsuccessful attempt: Set error message */
+                        $msg="<span style='color:red'>Invalid Login Details</span>";
+                }
+        }
+?>
 <html>
     <head>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -11,41 +34,42 @@
     <div class="flex-r login-wrapper">
       <div class="login-text">
         <div class="logo">
-          <span><i class="fab fa-speakap"></i></span>
-          <span>Coders</span>
+          <span><img src="../Images/logo.png" alt="" class="imgLogo"></span>
         </div>
-        <h1>Sign Up</h1>
-        <p>It's not long before you embark on this journey! </p>
+        <h1>Saioa hasi</h1>
+        <p>Saioa hasi gure web-orrian</p>
 
-        <form class="flex-c">
+        <form action="" method="POST" name="login_form" class="flex-c">
           <div class="input-box">
             <span class="label">E-mail</span>
             <div class=" flex-r input">
-              <input type="text" placeholder="name@abc.com">
+              <input name="Username" type="text" placeholder="erabiltzailea@uni.eus">
               <i class="fas fa-at"></i>
             </div>
           </div>
 
           <div class="input-box">
-            <span class="label">Password</span>
+            <span class="label">Pasahitza</span>
             <div class="flex-r input">
-              <input type="password" placeholder="8+ (a, A, 1, #)">
+              <input name="Password" type="password" placeholder="">
               <i class="fas fa-lock"></i>
             </div>
           </div>
-
+          <!--
           <div class="check">
             <input type="checkbox" name="" id="">
             <span>I've read and agree with T&C</span>
-          </div>
+          </div>-->
 
-          <input class="btn" type="submit" value="Create an Account">
+          <input name="Submit" type="submit" class="btn" value="Saioa hasi">
           <span class="extra-line">
-            <span>Already have an account?</span>
-            <a href="#">Sign In</a>
+            <span>Erabiltzaile berria?</span>
+            <a href="#">Sortu erabiltzailea</a>
+          </span>
+          <span class="extra-line">
+            <a href="index.php">Hasierako orrira bueltatu</a>
           </span>
         </form>
-
       </div>
     </div>
   </div>
