@@ -58,8 +58,17 @@
           <a class="nav-link">Link</a>
         </li>
       </ul>
-      
-      <button class="btn btn-outline-dark fw-bold"><a href="login.php">Login</a></button>
+      <?php
+      if($_SESSION["user_id"]) {
+      ?>
+        <button class="btn btn-outline-dark fw-bold"><a href="../Model/logout.php">Logout</a></button>
+      <?php
+      }else {
+      ?>
+        <button class="btn btn-outline-dark fw-bold"><a href="login.php">Login</a></button>      <?php
+      }
+      ?>
+     
     </div>
   </div>
 </nav>

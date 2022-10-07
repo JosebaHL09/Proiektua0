@@ -6,9 +6,18 @@
   .navbar .navbar-nav .nav-link {
     color: white;
   }
-
+  .navbar-light .navbar-brand {
+    color: white;
+  }
   .btn-outline-dark {
-    border-radius: 0;
+    border-radius: 1rem;
+    border: 0.2rem solid rgb(187, 187, 187);
+    background-color: white;
+    color: black;
+  }
+  .btn-outline-dark a{
+    color: black;
+    font-weight: bold;
   }
   .btn-outline-dark:focus {
     box-shadow: none;
