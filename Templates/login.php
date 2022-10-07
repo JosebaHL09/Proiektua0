@@ -1,27 +1,27 @@
-<?php session_start(); /* Starts the session */
-        
-        /* Check Login form submitted */        
-        if(isset($_POST['Submit'])){
-                /* Define username and associated password array */
-                $logins = array('admin' => '123','username1' => 'password1','username2' => 'password2');
-                
-                /* Check and assign submitted Username and Password to new variable */
-                $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
-                $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
-                
-                /* Check Username and Password existence in defined array */            
-                if (isset($users[$_POST["Username"]])) {
-                    if ($users[$_POST["Username"]] == $_POST["Password"]) {
-                      $_SESSION["Username"] = $_POST["Username"];
-                    }
-                }
-                if (!isset($_SESSION["Username"])) { $failed = true; }
+<?php
+include('../Model/conexion.php');
+session_start();
+ 
+if (isset($_POST['Submit'])) {
+ 
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
+ 
+    $query = $connection->prepare("SELECT * FROM users WHERE USERNAME=:username");
+    $query->bindParam("username", $username, PDO::PARAM_STR);
+    $query->execute();
 
-                if (isset($_SESSION["Username"])) {
-                    header("Location: index.php"); // SET YOUR OWN HOME PAGE!
-                    exit();
-                  }
-        }
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    if($result){
+      $_SESSION['user_id'] = $result['id'];
+      $_SESSION['username'] = $result['username'];
+      $_SESSION['mail'] = $result['mail'];
+
+
+      header("Location:index.php");
+    }
+}
+ 
 ?>
 <html>
     <head>

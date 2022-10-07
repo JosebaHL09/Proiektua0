@@ -1,9 +1,10 @@
 .navbar {
-    background: #fff;
+  background: linear-gradient(122.33deg, #863596 30.62%, #4d015c 100%);
     box-shadow: 0 4px 6px rgba(22, 22, 26, 0.18);
+    color: white;
   }
   .navbar .navbar-nav .nav-link {
-    color: #000;
+    color: white;
   }
 
   .btn-outline-dark {
@@ -29,7 +30,7 @@
     
   }
 a{
-  color:black;
+  color:white;
   text-decoration: none; 
 }
 .navbar-toggler{

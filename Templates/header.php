@@ -5,30 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Aplicación CRUD PHP</title>
-    <link rel="stylesheet" href="../styles/navbar.css"/>
+    
+    <link rel="stylesheet" href="../styles/styles.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/navbar.css"/>
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-<?php
-  session_start();
- 
-  if(!isset($_SESSION['user_id'])){
-      header('Location: login.php');
-      exit;
-  } else {
-    // Show users the page!
-  }
-?>
-    <a class="navbar-brand fw-bold" href="#">Ikasleak - Joseba</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <?php
+      if($_SESSION["user_id"]) {
+    ?>
+      <a class="navbar-brand fw-bold" href="#">Ongi etorri - <?php echo $_SESSION["username"]; ?></a>
+    <?php
+      }else {
+    ?>
+    <a class="navbar-brand fw-bold" href="#">Ikasleen web orria</a>
+    <?php
+      }
+    ?>
+    <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -50,6 +58,7 @@
           <a class="nav-link">Link</a>
         </li>
       </ul>
+      
       <button class="btn btn-outline-dark fw-bold"><a href="login.php">Login</a></button>
     </div>
   </div>

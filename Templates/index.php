@@ -1,6 +1,10 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
-    <?php include "header.php"; ?>
-        <h1>Prueba</h1>
-    <?php include "footer.php"; ?>
+<?php include "header.php"; ?>
+    <img src="../Images/logob.png" alt="" class="logob">
+<?php include "footer.php"; ?>
 </html>
