@@ -66,7 +66,7 @@ if (isset($_POST['Submit'])) {
           <input name="Submit" type="submit" class="btn" value="Saioa hasi">
           <span class="extra-line">
             <span>Erabiltzaile berria?</span>
-            <a href="#">Sortu erabiltzailea</a>
+            <a href="registro.php">Sortu erabiltzailea</a>
           </span>
           <span class="extra-line">
             <a href="index.php">Hasierako orrira bueltatu</a>
