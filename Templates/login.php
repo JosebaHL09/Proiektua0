@@ -6,20 +6,27 @@ if (isset($_POST['Submit'])) {
  
     $username = $_POST['Username'];
     $password = $_POST['Password'];
- 
+     
+  
     $query = $connection->prepare("SELECT * FROM users WHERE USERNAME=:username");
     $query->bindParam("username", $username, PDO::PARAM_STR);
+    #$query->bindParam("hashed_password", $hashed_password, PDO::PARAM_STR);
     $query->execute();
 
     $result = $query->fetch(PDO::FETCH_ASSOC);
-    if($result){
-      $_SESSION['user_id'] = $result['id'];
-      $_SESSION['username'] = $result['username'];
-      $_SESSION['mail'] = $result['mail'];
 
-
-      header("Location:index.php");
+    echo $password;
+    if(password_verify($password, $result['password'])) {
+      if($result){
+        $_SESSION['user_id'] = $result['id'];
+        $_SESSION['username'] = $result['username'];
+        $_SESSION['mail'] = $result['mail'];
+  
+  
+        header("Location:index.php");
+      }
     }
+    
 }
  
 ?>
