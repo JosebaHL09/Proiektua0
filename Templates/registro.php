@@ -1,23 +1,60 @@
 <?php
 include('../Model/conexion.php');
-include '../Model/funciones.php';
+include ('../Model/funciones.php');
+include('../Model/config.php');
 
 $query = $connection->prepare("SELECT id, concat(nombre, ' ', apellido) as nombre FROM alumnos; ");
 $query ->execute();
 $ikasleak = $query->fetchAll();
 
+if (isset($_POST['submit'])) {
+  $config = include '../Model/config.php';
+  try {
+    $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
+    $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+
+    $alumno = array(
+      "username"   => $_POST['username'],
+      "mail" => $_POST['mail'],
+      "password" => $_POST['password'],
+      "admin" => 1,
+      "ikasleid" => $_POST['ikaslea'],
+    );
+
+
+    $consultaSQL = "INSERT INTO users (username, mail, password, admin,ikasleid) values (:" . implode(", :", array_keys($alumno)) . ")";
+
+    $sentencia = $conexion->prepare($consultaSQL);
+    $sentencia->execute($alumno);
+
+  } catch(PDOException $error) {
+    $resultado['error'] = true;
+    $resultado['mensaje'] = $error->getMessage();
+  }
+}
 ?>
-
-
 <html>
     <head>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <link rel="stylesheet" href="../Styles/login.css">
     </head>
-
 <!-- icons  -->
-
 <body>
+<?php
+if (isset($resultado)) {
+  ?>
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
+          <?= $resultado['mensaje'] ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php
+}
+?>
   <div class=" flex-r container">
     <div class="flex-r login-wrapper">
       <div class="login-text">
@@ -27,11 +64,11 @@ $ikasleak = $query->fetchAll();
         <h1>Erregistratu</h1>
         <p>Erregistratu gure web-orrian</p>
 
-        <form action="" method="POST" name="login_form" class="flex-c">
+        <form action="" method="post" name="login_form" class="flex-c">
             <div class="input-box">
                 <span class="label">Erabiltzaile izena</span>
                 <div class=" flex-r input">
-                    <input name="Username" type="text" placeholder="XxByErabiltzailexX">
+                    <input name="username" type="text" placeholder="XxByErabiltzailexX">
                     <i class="fa fa-user-circle"></i>
                 </div>
             </div> 
@@ -39,7 +76,7 @@ $ikasleak = $query->fetchAll();
             <div class="input-box">
                 <span class="label">E-mail</span>
                 <div class=" flex-r input">
-                    <input name="Mail" type="text" placeholder="erabiltzailea@uni.eus">
+                    <input name="mail" type="text" placeholder="erabiltzailea@uni.eus">
                     <i class="fas fa-at"></i>
                 </div>  
             </div>
@@ -47,7 +84,7 @@ $ikasleak = $query->fetchAll();
             <div class="input-box">
             <span class="label">Pasahitza</span>
                 <div class="flex-r input">
-                    <input name="Password" type="password" placeholder="">
+                    <input name="password" type="password" placeholder="">
                     <i class="fas fa-lock"></i>
                 </div>
             </div>
@@ -55,14 +92,14 @@ $ikasleak = $query->fetchAll();
             <div class="input-box">
             <span class="label">Pasahitza errepikatu</span>
                 <div class="flex-r input">
-                    <input name="Password2" type="password" placeholder="">
+                    <input name="password2" type="password" placeholder="">
                     <i class="fas fa-lock"></i>
                 </div>
             </div>
 
             <div class="input-box">
             <span class="label">Ikaslea</span>
-                <select name="Ikaslea" id="ikaslea" class="ikaslea">
+                <select name="ikaslea" id="ikaslea" class="ikaslea">
                 <option value=""></option>
                     <?php
                     foreach ($ikasleak as $x){
@@ -74,10 +111,10 @@ $ikasleak = $query->fetchAll();
             </div>
           <span class="label">Admin</span>
           <div class="check">
-            <input type="checkbox" name="Admin" id="">
+            <input type="checkbox" name="admin" id="">
           </div>
 
-          <input name="Submit" type="submit" class="btn" value="Erabiltzailea sortu">
+          <input name="submit" type="submit" class="btn" value="Erabiltzailea sortu">
           <span class="extra-line">
             <span></span>
             <a href="login.php">Erabiltzaile bat duzu? Saioa hasi</a>
