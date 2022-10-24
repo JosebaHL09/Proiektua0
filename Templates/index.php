@@ -5,6 +5,6 @@
 <!DOCTYPE html>
 <html>
 <?php include "header.php"; ?>
-    <img src="../Images/logob.png" alt="" class="logob">
+    <div class="cursos"></div>
 <?php include "footer.php"; ?>
 </html>

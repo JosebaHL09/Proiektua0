@@ -10,23 +10,20 @@ if (isset($_POST['Submit'])) {
   
     $query = $connection->prepare("SELECT * FROM users WHERE USERNAME=:username");
     $query->bindParam("username", $username, PDO::PARAM_STR);
-    #$query->bindParam("hashed_password", $hashed_password, PDO::PARAM_STR);
+   
     $query->execute();
 
     $result = $query->fetch(PDO::FETCH_ASSOC);
-
-    echo $password;
     if(password_verify($password, $result['password'])) {
       if($result){
         $_SESSION['user_id'] = $result['id'];
         $_SESSION['username'] = $result['username'];
         $_SESSION['mail'] = $result['mail'];
-  
+        $_SESSION['admin'] = $result['admin'];
   
         header("Location:index.php");
       }
     }
-    
 }
  
 ?>
@@ -64,11 +61,6 @@ if (isset($_POST['Submit'])) {
               <i class="fas fa-lock"></i>
             </div>
           </div>
-          <!--
-          <div class="check">
-            <input type="checkbox" name="" id="">
-            <span>I've read and agree with T&C</span>
-          </div>-->
 
           <input name="Submit" type="submit" class="btn" value="Saioa hasi">
           <span class="extra-line">

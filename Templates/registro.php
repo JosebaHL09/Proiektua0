@@ -20,7 +20,10 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['admin'])) {
       $adminvalue = 1;
     }
-
+    if(isset($_POST['admin']) && 
+      $_POST['admin'] == '1') {
+        $adminvalue = 1;
+    }
 
     $alumno = array(
       "username"   => $_POST['username'],
@@ -46,9 +49,10 @@ if (isset($_POST['submit'])) {
 
 function validar(){
   $validado = true;
-  if ($_POST['password'] != $_POST['password2']){ 
-    echo '<script>alert("Las contraseñas no son iguales")</script>';
-    $validado = false;
+  if (isset($_POST['password']) && isset($_POST['password2'])){
+    if ($_POST['password'] != $_POST['password2']){ 
+      $validado = false;
+    }
   }
   return $validado;
 }
@@ -88,16 +92,16 @@ function validar(){
 
             <div class="input-box">
             <span class="label">Pasahitza</span>
-                <div class="flex-r input">
-                    <input name="password" type="password" placeholder="" required>
+                <div class="flex-r input" style="<?php if(!validar()){echo "border-color:red;";} ?>">
+                    <input name="password" type="password" placeholder="<?php if(!validar()){echo "Las contraseñas no son iguales";} ?>" required>
                     <i class="fas fa-lock"></i>
                 </div>
             </div>
 
             <div class="input-box">
             <span class="label">Pasahitza errepikatu</span>
-                <div class="flex-r input">
-                    <input name="password2" type="password" placeholder="" required>
+                <div class="flex-r input" style="<?php if(!validar()){echo "border-color:red;";} ?>">
+                    <input name="password2" type="password" placeholder="<?php if(!validar()){echo "Las contraseñas no son iguales";} ?>" required>
                     <i class="fas fa-lock"></i>
                 </div>
             </div>
@@ -116,7 +120,7 @@ function validar(){
             </div>
           <span class="label">Admin</span>
           <div class="check">
-            <input type="checkbox" name="admin" id="">
+            <input type="checkbox" name="admin" id="" value="1">
           </div>
 
           <input name="submit" type="submit" class="btn" value="Erabiltzailea sortu">
