@@ -26,3 +26,14 @@ body{
     float: right;
     margin: 1%;
 }
+
+.header{
+    border-radius: 2rem 0rem 0rem 0rem;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(122.33deg, #863596 30.62%, #4d015c 100%);
+}
+.container{
+    width: 100%;
+    height: 90%;
+}

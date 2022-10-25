@@ -9,7 +9,20 @@
   .navbar-light .navbar-brand {
     color: white;
   }
+  .btn{
+    width: 5rem;
+    min-width: 5rem;
+    height: 2.5rem;
+    min-height: 2.5rem;
+  }
+  .btn a:hover{
+    text-decoration: none;
+  }
   .btn-outline-dark {
+    width: 5rem;
+    min-width: 5rem;
+    height: 2.5rem;
+    min-height: 2.5rem;
     border-radius: 1rem;
     border: 0.2rem solid rgb(187, 187, 187);
     background-color: white;
@@ -27,13 +40,17 @@
   }
   @media screen and (max-width: 768px) {
     .btn-outline-dark {
-      border: none;
-      padding: 0;
-      outline: none;
+      width: 5rem;
+      min-width: 5rem;
+      height: 2.5rem;
+      min-height: 2.5rem;
+      border-radius: 1rem;
+      border: 0.2rem solid rgb(187, 187, 187);
+      background-color: white;
+      color: black;
     }
   
     .btn-outline-dark:hover {
-      background: none;
       color: white;
     }
     
