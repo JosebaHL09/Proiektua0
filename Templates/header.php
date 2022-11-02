@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html lang="es">
   <head>
     <meta charset="utf-8" />

@@ -19,9 +19,14 @@ if (isset($_POST['Submit'])) {
         $_SESSION['user_id'] = $result['id'];
         $_SESSION['username'] = $result['username'];
         $_SESSION['mail'] = $result['mail'];
-        $_SESSION['admin'] = $result['admin'];
-  
-        header("Location:index.php");
+        $_SESSION['admin'] = $result['Admin'];
+        
+        if ($result['Admin'] == 0){
+          header("Location:index.php");
+        }else if($result['Admin'] == 1){
+          header("Location:administrazioa.php");
+        }
+        
       }
     }
 }
