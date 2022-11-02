@@ -64,6 +64,9 @@ if ($error) {
     </div>
   </div>
 </div>
+<form action="crear.php">
+    <input type="submit" value="Crear" />
+</form>
 <div class="container">
 <h2 class="mt-3 tit"><?= $titulo ?></h2>       
   <table class="table">
