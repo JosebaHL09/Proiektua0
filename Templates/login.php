@@ -1,6 +1,10 @@
 <?php
 include('../Model/conexion.php');
 session_start();
+
+if($_SESSION['user_id'] != 0){
+  header("Location:index.php");
+}
  
 if (isset($_POST['Submit'])) {
  
@@ -47,33 +51,33 @@ if (isset($_POST['Submit'])) {
         <div class="logo">
           <span><img src="../Images/logo.png" alt="" class="imgLogo"></span>
         </div>
-        <h1>Saioa hasi</h1>
-        <p>Saioa hasi gure web-orrian</p>
+        <h1>Inicio de sesión</h1>
+        <p>Inicia sesión en nuestra página</p>
 
         <form action="" method="POST" name="login_form" class="flex-c">
           <div class="input-box">
-            <span class="label">E-mail</span>
+            <span class="label">Usuario</span>
             <div class=" flex-r input">
-              <input name="Username" type="text" placeholder="erabiltzailea@uni.eus">
-              <i class="fas fa-at"></i>
+              <input name="Username" type="text" placeholder="Petxa011">
+              <i class="fa fa-user-circle"></i>
             </div>
           </div>
 
           <div class="input-box">
-            <span class="label">Pasahitza</span>
+            <span class="label">Contraseña</span>
             <div class="flex-r input">
               <input name="Password" type="password" placeholder="">
               <i class="fas fa-lock"></i>
             </div>
           </div>
 
-          <input name="Submit" type="submit" class="btn" value="Saioa hasi">
+          <input name="Submit" type="submit" class="btn" value="Iniciar sesión">
           <span class="extra-line">
-            <span>Erabiltzaile berria?</span>
-            <a href="registro.php">Sortu erabiltzailea</a>
+            <span>¿Nuevo usuario?</span>
+            <a href="registro.php">Crear usuario</a>
           </span>
           <span class="extra-line">
-            <a href="index.php">Hasierako orrira bueltatu</a>
+            <a href="index.php">Pagina principal</a>
           </span>
         </form>
       </div>

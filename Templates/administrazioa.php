@@ -28,7 +28,12 @@ try {
 $titulo = isset($_POST['apellido']) && $_POST['apellido'] != "" ? 'Lista de alumnos (' . $_POST['apellido'] . ')' : 'Lista de alumnos';
 ?>
 
-<?php include "../templates/header.php"; ?>
+<?php include "../templates/header.php"; 
+if($_SESSION['admin'] != 1){
+  header("Location:index.php");
+}
+?>
+
 
 <?php
 if ($error) {

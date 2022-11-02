@@ -71,13 +71,13 @@ function validar(){
         <div class="logo">
           <span><img src="../Images/logo.png" alt="" class="imgLogo"></span>
         </div>
-        <h1>Erregistratu</h1>
-        <p>Erregistratu gure web-orrian</p>
+        <h1>Registro</h1>
+        <p>Crear un usuario para nuestra página</p>
         <form action="" method="post" name="login_form" class="flex-c">
             <div class="input-box">
-                <span class="label">Erabiltzaile izena</span>
+                <span class="label">Usuario</span>
                 <div class=" flex-r input">
-                    <input name="username" type="text" placeholder="XxByErabiltzailexX" required>
+                    <input name="username" type="text" placeholder="ElChetos" required>
                     <i class="fa fa-user-circle"></i>
                 </div>
             </div> 
@@ -85,13 +85,13 @@ function validar(){
             <div class="input-box">
                 <span class="label">E-mail</span>
                 <div class=" flex-r input">
-                    <input name="mail" type="email" placeholder="erabiltzailea@uni.eus" pattern=".+@uni\.eus" required>
+                    <input name="mail" type="email" placeholder="user@uni.eus" pattern=".+@uni\.eus" required>
                     <i class="fas fa-at"></i>
                 </div>  
             </div>
 
             <div class="input-box">
-            <span class="label">Pasahitza</span>
+            <span class="label">Contraseña</span>
                 <div class="flex-r input" style="<?php if(!validar()){echo "border-color:red;";} ?>">
                     <input name="password" type="password" placeholder="<?php if(!validar()){echo "Las contraseñas no son iguales";} ?>" required>
                     <i class="fas fa-lock"></i>
@@ -99,7 +99,7 @@ function validar(){
             </div>
 
             <div class="input-box">
-            <span class="label">Pasahitza errepikatu</span>
+            <span class="label">Repetir contraseña</span>
                 <div class="flex-r input" style="<?php if(!validar()){echo "border-color:red;";} ?>">
                     <input name="password2" type="password" placeholder="<?php if(!validar()){echo "Las contraseñas no son iguales";} ?>" required>
                     <i class="fas fa-lock"></i>
@@ -107,7 +107,7 @@ function validar(){
             </div>
 
             <div class="input-box">
-            <span class="label">Ikaslea</span>
+            <span class="label">Alumno</span>
                 <select name="ikaslea" id="ikaslea" class="ikaslea" required>
                 <option value=""></option>
                     <?php
@@ -123,13 +123,13 @@ function validar(){
             <input type="checkbox" name="admin" id="" value="1">
           </div>
 
-          <input name="submit" type="submit" class="btn" value="Erabiltzailea sortu">
+          <input name="submit" type="submit" class="btn" value="Crear usuario">
           <span class="extra-line">
             <span></span>
-            <a href="login.php">Erabiltzaile bat duzu? Saioa hasi</a>
+            <a href="login.php">¿Ya tienes un usuario? Iniciar sesión</a>
           </span>
           <span class="extra-line">
-            <a href="index.php">Hasierako orrira bueltatu</a>
+            <a href="index.php">Pagina principal</a>
           </span>
         </form>
       </div>

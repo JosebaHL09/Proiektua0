@@ -28,7 +28,9 @@ try {
     <thead>
       <tr>
         <th>#</th>
+        <th>Abreviatura</th>
         <th>Nombre</th>
+        <th>Tutor</th>
         <th>Horas</th>
       </tr>
     </thead>
@@ -39,7 +41,9 @@ try {
                 ?>
                 <tr>
                   <td data-label="#"><?php echo escapar($fila["Id"]); ?></td>
+                  <td data-label="Abreviatura"><?php echo escapar($fila["Abreviatura"]); ?></td>
                   <td data-label="Nombre"><?php echo escapar($fila["Nombre"]); ?></td>
+                  <td data-label="Tutor"><?php echo escapar($fila["Tutor"]); ?></td>
                   <td data-label="Horas"><?php echo escapar($fila["Horas"]); ?></td>
                 </tr>
                 <?php

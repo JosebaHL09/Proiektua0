@@ -20,11 +20,11 @@
     <?php
       if($_SESSION["user_id"]) {
     ?>
-      <a class="navbar-brand fw-bold" href="#">Ongi etorri - <?php echo $_SESSION["username"]; ?></a>
+      <a class="navbar-brand fw-bold" href="#">Bienvenido - <?php echo $_SESSION["username"]; ?></a>
     <?php
       }else {
     ?>
-    <a class="navbar-brand fw-bold" href="#">Ikasleen web orria</a>
+    <a class="navbar-brand fw-bold" href="#">Pagina de UNI-EIBAR</a>
     <?php
       }
     ?>
@@ -34,12 +34,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link" aria-current="page" href="index.php">Inicio</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="administrazioa.php">Administrazioa</a>
-        </li>
-        <li class="nav-item dropdown">
+        <?php
+          if($_SESSION["admin"] == 1) {
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="administrazioa.php">Administración</a>
+            </li>
+          <?php
+          }
+          ?>
+        
+        <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
@@ -51,9 +58,9 @@
             </li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
+        </li>-->
         <li class="nav-item">
-          <a class="nav-link">Link</a>
+          <a class="nav-link" href="registro.php">Registro de usuarios</a>
         </li>
       </ul>
       <?php
