@@ -81,6 +81,7 @@ table thead tr th:first-child {
     padding-left: 45px;
 }
 table thead tr th {
+  
     text-transform: uppercase;
     line-height: 60px !important;
     text-align: left;
@@ -94,6 +95,7 @@ table tbody {
 table tbody tr {
     border-top: 1px solid #e5e5e5;
     height: 60px;
+    
 }
 table tbody tr td:first-child {
     padding-left: 45px;
@@ -269,3 +271,7 @@ input {
   .extra-line a {
     color: #4d015c;
   }
+
+td a{
+  color: black;
+}

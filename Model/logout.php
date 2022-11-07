@@ -4,6 +4,8 @@
  $_SESSION['username'] = '';
  $_SESSION['mail'] = '';
  $_SESSION['admin'] = '';
+ $_SESSION['id_curso'] = null;
+ $_SESSION['ikasleid'] = null;
 
  header("Location:../Templates/index.php");
 ?>
