@@ -1,4 +1,3 @@
-
 <?php
 
 if (isset($_POST['submit'])) {
@@ -27,6 +26,7 @@ if (isset($_POST['submit'])) {
         $sentencia = $conexion->prepare($consultaSQL);
         $sentencia->execute($alumno);
 
+        header('Location:crear.php');
   } catch(PDOException $error) {
     $resultado['error'] = true;
     $resultado['mensaje'] = $error->getMessage();
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 <?php
 if (isset($resultado)) {
   ?>
-  <div class="container mt-3">
+  <div class="container mt-5 alerta">
     <div class="row">
       <div class="col-md-12">
         <div class="alert alert-<?= $resultado['error'] ? 'danger' : 'success' ?>" role="alert">
@@ -49,35 +49,54 @@ if (isset($resultado)) {
   <?php
 }
 ?>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="mt-4">Crea un alumno</h2>
-      <hr>
-      <form method="post">
-        <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" id="nombre" class="form-control">
+<div class="flex-r">
+    <div class="flex-r login-wrapper">
+      <div class="login-text">
+        <div class="logo">
+          <span><img src="../Images/logo.png" alt="" class="imgLogo"></span>
         </div>
-        <div class="form-group">
-          <label for="apellido">Apellido</label>
-          <input type="text" name="apellido" id="apellido" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="edad">Edad</label>
-          <input type="text" name="edad" id="edad" class="form-control">
-        </div>
-        <div class="form-group">
-          <input type="submit" name="submit" class="btn btn-primary" value="Enviar">
-          <a class="btn btn-primary" href="administrazioa.php">Regresar al inicio</a>
-        </div>
-      </form>
+        <h1>Crea un alumno</h1>
+        <form action="" method="POST" name="login_form" class="flex-c form">
+          <div class="input-box">
+            <span class="label">Nombre</span>
+            <div class=" flex-r input">
+              <input name="nombre" type="text" placeholder="">
+              <i class="fa fa-user-circle"></i>
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="label">Apellido</span>
+            <div class=" flex-r input">
+              <input name="apellido" type="text" placeholder="">
+              <i class="fa fa-user-circle"></i>
+            </div>
+          </div>
+          <div class="input-box">
+              <span class="label">E-mail</span>
+              <div class=" flex-r input">
+                <input name="email" type="email" placeholder="user@uni.eus" pattern=".+@uni\.eus" required>
+                <i class="fas fa-at"></i>
+              </div>  
+          </div>
+          <div class="input-box">
+            <span class="label">Edad</span>
+            <div class=" flex-r input">
+              <input name="edad" type="number" placeholder="" min=0 max=100>
+              <i class="fa-solid fa-cake-candles"></i>
+            </div>
+          </div>
+
+          <input name="submit" type="submit" class="btn_input" value="Crear">
+          <span class="extra-line">
+            <span>¿Nuevo usuario?</span>
+            <a href="registro.php">Crear usuario</a>
+          </span>
+          <span class="extra-line">
+            <a href="index.php">Pagina principal</a>
+          </span>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
 <?php include "../templates/footer.php"; ?>

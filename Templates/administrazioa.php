@@ -64,11 +64,10 @@ if ($error) {
     </div>
   </div>
 </div>
-<form action="crear.php">
-    <input type="submit" value="Crear" />
-</form>
+
 <div class="container">
-<h2 class="mt-3 tit"><?= $titulo ?></h2>       
+  <h2 class="mt-3 tit"><?= $titulo ?></h2>
+  <h4><a class="mt-3 tit"href="crear.php">Crear un alumno</a></h4> 
   <table class="table">
     <thead>
       <tr>

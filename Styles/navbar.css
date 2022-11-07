@@ -2,6 +2,11 @@
   background: linear-gradient(122.33deg, #863596 30.62%, #4d015c 100%);
     box-shadow: 0 4px 6px rgba(22, 22, 26, 0.18);
     color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1100;
   }
   .navbar .navbar-nav .nav-link {
     color: white;
