@@ -76,7 +76,7 @@ function validar(){
 <div class="row">
     <div class="col-md-12">
       <div class="alert alert-danger" role="alert">
-        <h4>Usuario o email duplicado</h4>
+        <h4>El nombre de usuario, alumno, o email estan en uso</h4>
       </div>
     </div>
   </div>

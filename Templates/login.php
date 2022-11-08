@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 include('../Model/conexion.php');
 session_start();
 
@@ -17,34 +20,35 @@ if (isset($_POST['Submit'])) {
     $query->execute();
     $result = $query->fetch(PDO::FETCH_ASSOC);
 
-    
-    if(password_verify($password, $result['password'])) {
-      if($result){
-        $_SESSION['user_id'] = $result['id'];
-        $_SESSION['username'] = $result['username'];
-        $_SESSION['mail'] = $result['mail'];
-        $_SESSION['admin'] = $result['Admin'];
-        $_SESSION['id_curso'] = null;
-        $_SESSION['ikasleid'] = null;
-        if ($result['IkasleID'] != null){
-          $_SESSION['ikasleid'] = $result['IkasleID'];
-          
-          $query1 = $connection->prepare("SELECT id_curso FROM alumnos WHERE id=:ikasleid");
-          $query1->bindParam("ikasleid", $result['IkasleID'], PDO::PARAM_STR);
-          $query1->execute();
-          $result1 = $query->fetch(PDO::FETCH_ASSOC);
-          if($result1){
-            $_SESSION['id_curso'] = $result1['id_curso'];
+    if(!empty($result)){
+      if(password_verify($password, $result['password'])) {
+        if($result){
+          $_SESSION['user_id'] = $result['id'];
+          $_SESSION['username'] = $result['username'];
+          $_SESSION['mail'] = $result['mail'];
+          $_SESSION['admin'] = $result['Admin'];
+          $_SESSION['id_curso'] = null;
+          $_SESSION['ikasleid'] = null;
+          if ($result['IkasleID'] != null){
+            $_SESSION['ikasleid'] = $result['IkasleID'];
+            
+            $query1 = $connection->prepare("SELECT id_curso FROM alumnos WHERE id=:ikasleid");
+            $query1->bindParam("ikasleid", $result['IkasleID'], PDO::PARAM_STR);
+            $query1->execute();
+            $result1 = $query->fetch(PDO::FETCH_ASSOC);
+            if($result1){
+              $_SESSION['id_curso'] = $result1['id_curso'];
+            }
           }
+          if ($result['Admin'] == 0){
+            header("Location:index.php");
+          }else if($result['Admin'] == 1){
+            header("Location:administrazioa.php");
+          }
+          
         }
-        if ($result['Admin'] == 0){
-          header("Location:index.php");
-        }else if($result['Admin'] == 1){
-          header("Location:administrazioa.php");
-        }
-        
       }
-    }
+  }
 }
  
 ?>
