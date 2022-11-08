@@ -18,18 +18,13 @@ try {
     $consultaSQL = "SELECT * FROM alumnos";
   }
 
-  // if (isset($_POST['Group'])) {
-  //   $consultaSQL1 = "SELECT * FROM alumnos WHERE id_curso LIKE '%" . $_POST['Group'] . "%'";
-  // } else {
-  //   $consultaSQL1 = "SELECT * FROM alumnos";
-  // }
 
   $sentencia = $conexion->prepare($consultaSQL);
   $sentencia->execute();
 
   $alumnos = $sentencia->fetchAll();
 
-  $consultaSQL1 = "SELECT Abreviatura FROM cursos";
+  $consultaSQL1 = "SELECT * FROM cursos";
 
    $sentencia1 = $conexion->prepare($consultaSQL1);
    $sentencia1->execute();
@@ -87,7 +82,7 @@ if ($error) {
             foreach($cursos as $m)
             {
             ?>
-                <option value="<?php echo $m['Abreviatura'];?>"><?php echo $m['Abreviatura'];?></option>
+                <option value="<?php echo $m['Id'];?>"><?php echo $m['Abreviatura'];?></option>
             <?php
             }
         ?>
