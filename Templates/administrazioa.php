@@ -12,14 +12,29 @@ try {
 
   if (isset($_POST['apellido']) && $_POST['apellido'] != "") {  
     $consultaSQL = "SELECT * FROM alumnos WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
+  } else if (isset($_POST['Group'])) {
+    $consultaSQL = "SELECT * FROM alumnos WHERE id_curso LIKE '%" . $_POST['Group'] . "%'";
   } else {
     $consultaSQL = "SELECT * FROM alumnos";
   }
+
+  // if (isset($_POST['Group'])) {
+  //   $consultaSQL1 = "SELECT * FROM alumnos WHERE id_curso LIKE '%" . $_POST['Group'] . "%'";
+  // } else {
+  //   $consultaSQL1 = "SELECT * FROM alumnos";
+  // }
 
   $sentencia = $conexion->prepare($consultaSQL);
   $sentencia->execute();
 
   $alumnos = $sentencia->fetchAll();
+
+  $consultaSQL1 = "SELECT Abreviatura FROM cursos";
+
+   $sentencia1 = $conexion->prepare($consultaSQL1);
+   $sentencia1->execute();
+
+   $cursos = $sentencia1->fetchAll();
 
 } catch(PDOException $error) {
   $error= $error->getMessage();
@@ -52,18 +67,40 @@ if ($error) {
 ?>
 
 
+
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <form method="post" class="form-inline buscador">
         <div class="form-group mr-3">
           <input type="text" id="apellido" name="apellido" placeholder="Buscar por apellido" class="form-control">
         </div>
         <input name="submit" type="submit" class="btnB" value="Ver resultados">
       </form>
+          </div>
+      <div class="col-md-6">
+      <form method="post" class="form-inline buscador">
+        <div class="form-group mr-3">
+        <label for="animalGroup">Seleciona el cursoㅤ</label>
+                                      <select name="Group" id="Group">
+            <?php
+            foreach($cursos as $m)
+            {
+            ?>
+                <option value="<?php echo $m['Abreviatura'];?>"><?php echo $m['Abreviatura'];?></option>
+            <?php
+            }
+        ?>
+        </select>
+        </div>
+        <input name="submit" type="submit" class="btnB" value="Ver resultados">
+      </form>
+          </div>
     </div>
   </div>
 </div>
+
+
 
 <div class="container">
   <h2 class="mt-3 tit"><?= $titulo ?></h2>
