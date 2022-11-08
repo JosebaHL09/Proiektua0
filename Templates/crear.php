@@ -88,11 +88,7 @@ if (isset($resultado)) {
 
           <input name="submit" type="submit" class="btn_input" value="Crear">
           <span class="extra-line">
-            <span>¿Nuevo usuario?</span>
-            <a href="registro.php">Crear usuario</a>
-          </span>
-          <span class="extra-line">
-            <a href="index.php">Pagina principal</a>
+            <a href="administrazioa.php">Regresar la pagina de administracion</a>
           </span>
         </form>
       </div>

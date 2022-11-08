@@ -84,51 +84,67 @@ if ($resultado['error']) {
 }
 ?>
 
-<?php
-if (isset($_POST['submit']) && !$resultado['error']) {
-  ?>
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="alert alert-success" role="alert">
-          El alumno ha sido actualizado correctamente
-        </div>
-      </div>
-    </div>
-  </div>
-  <?php
-}
-?>
+
 
 <?php
 if (isset($alumno) && $alumno) {
   ?>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
+  <?php
+    if (isset($_POST['submit']) && !$resultado['error']) {
+      ?>
+      <div class="containermsg">
+      <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-success" role="alert">
+              El alumno ha sido actualizado correctamente
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+    }
+    ?>
+  <div class="flex-r">
+    <div class="flex-r login-wrapper">
+      <div class="login-text">
+        <div class="logo">
+          <span><img src="../Images/logo.png" alt="" class="imgLogo"></span>
+        </div>
         <h2 class="mt-4">Editando el alumno <?= ($alumno['nombre']) . ' ' . ($alumno['apellido'])  ?></h2>
-        <hr>
-        <form method="post">
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" value="<?= ($alumno['nombre']) ?>" class="form-control">
+        <form action="" method="POST" name="login_form" class="flex-c form">
+          <div class="input-box">
+            <span class="label">Nombre</span>
+            <div class=" flex-r input">
+              <input name="nombre" id="nombre" value="<?= ($alumno['nombre']) ?>" type="text" placeholder="">
+              <i class="fa fa-user-circle"></i>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" id="apellido" value="<?= ($alumno['apellido']) ?>" class="form-control">
+          <div class="input-box">
+            <span class="label">Apellido</span>
+            <div class=" flex-r input">
+              <input name="apellido" id="apellido" value="<?= ($alumno['apellido']) ?>" type="text" placeholder="">
+              <i class="fa fa-user-circle"></i>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<?= ($alumno['email']) ?>" class="form-control">
+          <div class="input-box">
+              <span class="label">E-mail</span>
+              <div class=" flex-r input">
+                <input name="email" id="email" value="<?= ($alumno['email']) ?>" type="email" placeholder="user@uni.eus" pattern=".+@uni\.eus" required>
+                <i class="fas fa-at"></i>
+              </div>  
           </div>
-          <div class="form-group">
-            <label for="edad">Edad</label>
-            <input type="text" name="edad" id="edad" value="<?= ($alumno['edad']) ?>" class="form-control">
+          <div class="input-box">
+            <span class="label">Edad</span>
+            <div class=" flex-r input">
+              <input type="text" name="edad" id="edad" value="<?= ($alumno['edad']) ?>" type="number" placeholder="" min=0 max=100>
+              <i class="fa-solid fa-cake-candles"></i>
+            </div>
           </div>
-          <div class="form-group">
-            <input type="submit" name="submit" class="btn btn-primary" value="Actualizar">
-            <a class="btn btn-primary" href="administrazioa.php">Regresar atras</a>
-          </div>
+
+          <input name="submit" type="submit" class="btn_input" value="Cambiar">
+          <span class="extra-line">
+            <a href="administrazioa.php">Regresar atras</a>
+          </span>
         </form>
       </div>
     </div>
